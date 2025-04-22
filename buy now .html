@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Checkout</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: linear-gradient(145deg, #1e1b2e, #2a2540);
+            padding: 30px 40px;
+            border-radius: 16px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid #3a3450;
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            color: #bb86fc;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .total {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 20px 0;
+            color: #ffffff;
+        }
+        #totalAmount {
+            color: #bb86fc;
+            font-size: 1.2em;
+        }
+        .success {
+            font-size: 1.2em;
+            color: #03dac6;
+            margin: 25px 0;
+            padding: 10px;
+            background-color: rgba(3, 218, 198, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #03dac6;
+        }
+        button {
+            background: linear-gradient(135deg, #bb86fc, #9c64f5);
+            color: #121212;
+            padding: 12px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(187, 134, 252, 0.3);
+            background: linear-gradient(135deg, #9c64f5, #bb86fc);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout Complete</h1>
+        <p class="total">Total Amount: <span id="totalAmount">0</span> Coins</p>
+        <p class="success">Your purchase was successful!</p>
+        <button onclick="goHome()">Go to Home</button>
+    </div>
+    <script>
+        document.getElementById('totalAmount').innerText = localStorage.getItem('totalAmount') || '0';
+        function goHome() {
+            window.location.href = "x1.html";
+        }
+    </script>
+</body>
+</html>

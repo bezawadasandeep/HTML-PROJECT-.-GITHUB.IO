@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store | Nexus Gaming Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e44ff;
+            --secondary: #00f7ff;
+            --dark: #0a0a12;
+            --light: #f0f0ff;
+            --accent: #ff4d8d;
+            --neon-purple: #b400ff;
+            --neon-cyan: #00f7ff;
+            --card-bg: rgba(20, 20, 36, 0.85);
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.7;
+            background-image: 
+                linear-gradient(rgba(10, 10, 18, 0.9), rgba(10, 10, 18, 0.9)),
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        
+        /* Enhanced Navigation Bar */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(110, 68, 255, 0.3);
+        }
+        
+        .navbar a {
+            margin: 0 15px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+        
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            transition: var(--transition);
+        }
+        
+        .navbar a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+        
+        .navbar a:hover::before {
+            width: 80%;
+        }
+        
+        .navbar a.active {
+            background: linear-gradient(135deg, rgba(110, 68, 255, 0.2), rgba(0, 247, 255, 0.1));
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(110, 68, 255, 0.2);
+            position: relative;
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(110, 68, 255, 0.05) 0%, transparent 70%);
+            transform: rotate(30deg);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: transparent;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(180, 0, 255, 0.3);
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            border-radius: 4px;
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+        
+        /* Search Bar Styles */
+        .search-container {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-container input {
+            flex: 1;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 1.1rem;
+            font-family: 'Rajdhani', sans-serif;
+            border: 1px solid rgba(110, 68, 255, 0.3);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            padding-right: 60px;
+        }
+        
+        .search-container input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(110, 68, 255, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .search-container input::placeholder {
+            color: rgba(240, 240, 255, 0.6);
+        }
+        
+        .search-container button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .search-container button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(110, 68, 255, 0.5);
+        }
+        
+        .shopping {
+            cursor: pointer;
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .shopping:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .shopping img {
+            width: 30px;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+            transition: var(--transition);
+        }
+        
+        .shopping:hover img {
+            transform: rotate(-10deg);
+        }
+        
+        .shopping .quantity {
+            background: var(--primary);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+        
+        .shopping:hover .quantity {
+            transform: scale(1.1);
+            background: var(--secondary);
+        }
+        
+        .cart {
+            display: none;
+            position: fixed;
+            top: 15%;
+            right: 20px;
+            background: var(--card-bg);
+            color: var(--light);
+            width: 380px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            border-radius: 16px;
+            z-index: 1000;
+            border: 1px solid rgba(110, 68, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .cart.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .cart h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .cart .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+        
+        .cart .item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .total {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 25px 0;
+            text-align: right;
+            color: var(--secondary);
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cart button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .cart button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(110, 68, 255, 0.4);
+        }
+        
+        .cart button.clear {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .cart button.clear:hover {
+            background: rgba(255, 77, 141, 0.8);
+        }
+        
+        .games-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .game {
+            background: var(--card-bg);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(110, 68, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(110, 68, 255, 0.1), rgba(0, 247, 255, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .game:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: rgba(110, 68, 255, 0.4);
+        }
+        
+        .game:hover::before {
+            opacity: 1;
+        }
+        
+        .game img {
+            width: 140px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: var(--transition);
+            border: 2px solid rgba(110, 68, 255, 0.2);
+        }
+        
+        .game:hover img {
+            transform: scale(1.05);
+            border-color: rgba(110, 68, 255, 0.4);
+        }
+        
+        .game-details {
+            flex: 1;
+        }
+        
+        .game-details h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--secondary);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-details p {
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+            color: rgba(240, 240, 255, 0.8);
+        }
+        
+        .game button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(110, 68, 255, 0.3);
+        }
+        
+        .game button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(110, 68, 255, 0.5);
+        }
+        
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .free-tag {
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+        }
+        
+        /* Notification style */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 18px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification.success {
+            background: var(--secondary);
+        }
+        
+        .notification.error {
+            background: var(--accent);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .games-list {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 30px;
+            }
+            
+            .games-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .game {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cart {
+                width: 90%;
+                right: 5%;
+            }
+            
+            .navbar a {
+                margin: 0 8px;
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .search-container {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .shopping {
+                top: 20px;
+                right: 20px;
+                padding: 10px 15px;
+            }
+            
+            .navbar a {
+                padding: 8px 12px;
+                margin: 0 5px;
+                font-size: 0.9rem;
+            }
+            
+            .search-container input {
+                padding: 12px 20px;
+                padding-right: 50px;
+            }
+            
+            .search-container button {
+                width: 40px;
+                height: 40px;
+                top: 4px;
+                right: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+     <nav class="navbar">
+        <a href="x1.html" ><i class="fas fa-home"></i> Home</a>
+        <a href="shop3.html"class="active"><i class="fas fa-store"></i> Store</a>
+        <a href="online games 1.html"><i class="fas fa-gamepad"></i> Play Online</a>
+        <a href="one about us.html"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="one contact .html"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+
+
+
+    <div class="container">
+        <h1>Nexus Game Store</h1>
+        <div class="shopping" onclick="toggleCart()">
+            <img src="https://w7.pngwing.com/pngs/886/649/png-transparent-shopping-cart-software-computer-icons-e-commerce-shopping-cart-blue-text-rectangle.png" alt="Shopping Cart">
+            <span class="quantity">0</span>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search games..." onkeyup="searchGames()">
+            <button onclick="searchGames()"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="cart" id="cart">
+            <h2><i class="fas fa-shopping-cart"></i> Shopping Cart</h2>
+            <div class="cart-items"></div>
+            <div class="total">Total: 0 Credits</div>
+            <button class="clear" onclick="clearCart()"><i class="fas fa-trash"></i> Clear Cart</button>
+            <button onclick="buyNow()"><i class="fas fa-credit-card"></i> Checkout</button>
+        </div>
+        <div class="games-list" id="games-list"></div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        let cart = [];
+        let quantitySpan = document.querySelector('.quantity');
+        let cartContainer = document.querySelector('.cart-items');
+        let totalDisplay = document.querySelector('.total');
+        let cartElement = document.getElementById('cart');
+        let notification = document.getElementById('notification');
+        let allProducts = [
+            { id: 1, name: 'Minecraft', image: 'https://i0.wp.com/thegamekeys.in/wp-content/uploads/2023/08/Minecraft-1.png?fit=1080%2C1500&ssl=1', price: 2000 },
+            { id: 2, name: 'Fortnite', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZWoQF_EWvGqGmMfE5eDd4M5q6yjpdExdWvA&s', price: 0 },
+            { id: 3, name: 'Cyberpunk 2077', image: 'https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg', price: 3500 },
+            { id: 4, name: 'God of War', image: 'https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg', price: 3000 },
+            { id: 5, name: 'The Legend of Zelda', image: 'https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg', price: 4000 },
+            { id: 6, name: 'Red Dead Redemption 2', image: 'https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg', price: 4500 },
+            { id: 7, name: 'Elden Ring', image: 'https://m.media-amazon.com/images/M/MV5BMWNlMDBiYzYtMWMyMC00Zjc5LTlhMjItMjRlMzBmYmVkOGM0XkEyXkFqcGc@._V1_.jpg', price: 5000 },
+            { id: 8, name: 'Horizon Forbidden West', image: 'https://i.scdn.co/image/ab67616d00001e02992ab5cdd68be3d1b5404283', price: 4600 },
+            { id: 9, name: 'Call of Duty: Warzone', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDUb6cofw-uUhTTNadztHaA9ecwXNJ3iAgKTWB4NpUY-tN_OtJjNYv1gG4UoiXzNwJPY&usqp=CAU', price: 0 },
+            { id: 10, name: 'GTA 5', image: 'https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png', price: 4600 },
+            { id: 11, name: 'FIFA 23', image: 'https://upload.wikimedia.org/wikipedia/en/a/a6/FIFA_23_Cover.jpg', price: 4600 },
+            { id: 12, name: 'The Witcher 3', image: 'https://m.media-amazon.com/images/M/MV5BNTQ2NjNkMTItNjViYy00MjhlLTgxMTEtOTM1ODJiNmFiMmJhXkEyXkFqcGc@._V1_.jpg', price: 5600 },
+            { id: 13, name: 'Resident Evil Village', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaQXtGrV7qcnp3tmbOvfR7jEt1n8hvWEoafw&s', price: 4000 },
+            { id: 14, name: 'Assassin\'s Creed Valhalla', image: 'https://static.posters.cz/image/1300/plakaty/assassin-s-creed-valhalla-eivor-i96339.jpg', price: 3600 },
+            { id: 15, name: 'PUBG', image: 'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/136898611/original/8c948c193bec0182203a4e6b65de675640ee3c2c/give-you-a-big-logo-of-pubg.png', price: 1600 },
+            { id: 16, name: 'Starfield', image: 'https://professionalmoron.com/wp-content/uploads/2023/10/starfield-the-bethesda-game.jpg', price: 5500 },
+            { id: 17, name: 'Spider-Man 2', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWL2mlkaimmWp_LFD-gFaPQJnrQ-c6rUHbbg&s', price: 5000 },
+            { id: 18, name: 'Hogwarts Legacy', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJtbspGPgxmJqBdA8fs4EDiydATaNyEg8kxg&s', price: 4800 },
+            { id: 19, name: 'valorant', image: 'https://assets-prd.ignimgs.com/2021/12/21/valorant-1640045685890.jpg', price: 4200 },
+            { id: 20, name: 'Diablo IV', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202211/3017/Oo1B84A7BLCT157YFSxjtwG0.png', price: 5200 },
+            { id: 21, name: 'The Last of Us Part II Remastered', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202312/0117/315718bce7eed62e3cf3fb02d61b81ff1782d6b6cf850fa4.png', price: 2200 },
+            { id: 22, name: 'dollhouse', image: 'https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA07491_00/7/i_a385217d24843e421d55db20345e769d3fc01bcd900f14fbe16d36749283e78a/i/icon0.png', price: 5900 },
+            { id: 23, name: 'The First Berserker', image: 'https://eu-central-1-gamescom.graphassets.com/AMwDHZTUSMaIlRlMFLL7Qz/output=quality:95,strip:true/resize=w:960,h:540,fit:crop/sharpen=amount:1/auto_image/RQXkjAiPS4ySjMvjoTil', price: 4200 },
+            { id: 24, name: 'atomfall ', image: 'https://upload.wikimedia.org/wikipedia/en/1/13/Atomfall_cover_art.jpeg', price: 2800 },
+            { id: 25, name: 'Final Fantasy XVI', image: 'https://assets-prd.ignimgs.com/2021/08/05/final-fantasy-xvi-button-1628180674117.jpg', price: 5400 }
+        ];
+        let displayedProducts = [...allProducts];
+
+        function toggleCart() {
+            if (cartElement.style.display === 'block') {
+                cartElement.style.display = 'none';
+                cartElement.classList.remove('active');
+            } else {
+                cartElement.style.display = 'block';
+                setTimeout(() => {
+                    cartElement.classList.add('active');
+                }, 10);
+            }
+        }
+
+        function showNotification(message, type = '') {
+            notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
+            notification.className = 'notification';
+            notification.classList.add('show', type);
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function updateCart() {
+            cartContainer.innerHTML = "";
+            let total = 0;
+            let totalItems = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<div style="text-align:center; padding:20px; color:rgba(240,240,255,0.6)">Your cart is empty</div>';
+                totalDisplay.innerText = `Total: 0 Credits`;
+                quantitySpan.innerText = 0;
+                return;
+            }
+
+            cart.forEach(item => {
+                let newItem = document.createElement('div');
+                newItem.classList.add('item');
+                newItem.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>${(item.price * item.quantity).toLocaleString()} Credits</span>
+                `;
+                cartContainer.appendChild(newItem);
+                total += item.price * item.quantity;
+                totalItems += item.quantity;
+            });
+
+            totalDisplay.innerText = `Total: ${total.toLocaleString()} Credits`;
+            quantitySpan.innerText = totalItems;
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCart();
+            showNotification('Cart cleared successfully!', 'success');
+        }
+
+        function buyNow() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'error');
+            } else {
+                localStorage.setItem('totalAmount', totalDisplay.innerText.replace('Total: ', ''));
+                window.location.href = "buy now .html";
+            }
+        }
+
+        function addToCart(name, price) {
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCart();
+            showNotification(`${name} added to cart!`, 'success');
+            
+            // Add animation to shopping cart icon
+            const cartIcon = document.querySelector('.shopping');
+            cartIcon.classList.add('pulse');
+            setTimeout(() => {
+                cartIcon.classList.remove('pulse');
+            }, 500);
+        }
+
+        function searchGames() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            displayedProducts = allProducts.filter(product => 
+                product.name.toLowerCase().includes(searchTerm)
+            );
+            displayGames();
+        }
+
+        function displayGames() {
+            let gamesList = document.getElementById('games-list');
+            gamesList.innerHTML = '';
+            
+            if (displayedProducts.length === 0) {
+                gamesList.innerHTML = '<div style="text-align:center; width:100%; padding:40px; color:rgba(240,240,255,0.6)">No games found matching your search</div>';
+                return;
+            }
+            
+            displayedProducts.forEach(product => {
+                let gameDiv = document.createElement('div');
+                gameDiv.classList.add('game');
+                gameDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="game-details">
+                        <h3>${product.name}</h3>
+                        <p>Price: <span class="price-tag ${product.price === 0 ? 'free-tag' : ''}">${
+                            product.price === 0 ? 'FREE' : product.price.toLocaleString() + ' Credits'
+                        }</span></p>
+                        <button onclick="addToCart('${product.name}', ${product.price})">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+                gamesList.appendChild(gameDiv);
+            });
+        }
+        
+        // Initialize the page
+        displayGames();
+    </script>
+</body>
+</html>

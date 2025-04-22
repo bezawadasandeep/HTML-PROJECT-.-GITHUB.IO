@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Nexus Gaming Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e44ff;
+            --secondary: #00f7ff;
+            --dark: #0a0a12;
+            --light: #f0f0ff;
+            --accent: #ff4d8d;
+            --neon-purple: #b400ff;
+            --neon-cyan: #00f7ff;
+            --card-bg: rgba(20, 20, 36, 0.85);
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.7;
+            background-image: 
+                linear-gradient(rgba(10, 10, 18, 0.9), rgba(10, 10, 18, 0.9)),
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        
+        /* Navigation Bar */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(110, 68, 255, 0.3);
+        }
+        
+        .navbar a {
+            margin: 0 15px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+        
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            transition: var(--transition);
+        }
+        
+        .navbar a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+        
+        .navbar a:hover::before {
+            width: 80%;
+        }
+        
+        .navbar a.active {
+            background: linear-gradient(135deg, rgba(110, 68, 255, 0.2), rgba(0, 247, 255, 0.1));
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(110, 68, 255, 0.2);
+            position: relative;
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(110, 68, 255, 0.05) 0%, transparent 70%);
+            transform: rotate(30deg);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: transparent;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(180, 0, 255, 0.3);
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            border-radius: 4px;
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+        
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--secondary);
+            margin: 30px 0 15px;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .last-updated {
+            font-style: italic;
+            color: rgba(240, 240, 255, 0.7);
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .navbar a {
+                margin: 0 8px;
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .navbar a {
+                padding: 8px 12px;
+                margin: 0 5px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/x1.html"><i class="fas fa-home"></i> Home</a>
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/shop3.html"><i class="fas fa-store"></i> Store</a>
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/online%20games%201.html"><i class="fas fa-gamepad"></i> Play Online</a>
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/one%20about%20us%20.html"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/one%20contact%20.html"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+
+    <div class="container">
+        <h1>Terms of Service</h1>
+        
+        <p>Last Updated: June 10, 2023</p>
+        
+        <p>Welcome to Nexus Gaming Hub! These Terms of Service ("Terms") govern your use of our website, games, and services. By accessing or using our services, you agree to be bound by these Terms.</p>
+        
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using Nexus Gaming Hub, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, you may not use our services.</p>
+        
+        <h2>2. Account Registration</h2>
+        <ul>
+            <li>You must be at least 13 years old to create an account</li>
+            <li>You are responsible for maintaining the confidentiality of your account credentials</li>
+            <li>You agree to provide accurate and complete registration information</li>
+            <li>We reserve the right to suspend or terminate accounts that violate these Terms</li>
+        </ul>
+        
+        <h2>3. User Conduct</h2>
+        <p>You agree not to:</p>
+        <ul>
+            <li>Use our services for any illegal purpose</li>
+            <li>Harass, threaten, or bully other users</li>
+            <li>Cheat, exploit bugs, or use unauthorized third-party software</li>
+            <li>Share inappropriate, offensive, or harmful content</li>
+            <li>Attempt to gain unauthorized access to our systems</li>
+            <li>Violate intellectual property rights</li>
+        </ul>
+        
+        <h2>4. Purchases and Virtual Goods</h2>
+        <ul>
+            <li>All purchases are final and non-refundable unless required by law</li>
+            <li>Virtual goods and currencies have no monetary value and cannot be redeemed for cash</li>
+            <li>We may modify or discontinue virtual goods at any time</li>
+            <li>Prices are subject to change without notice</li>
+        </ul>
+        
+        <h2>5. Intellectual Property</h2>
+        <p>All content on Nexus Gaming Hub, including games, graphics, and logos, are our property or licensed to us. You may not:</p>
+        <ul>
+            <li>Copy, modify, or distribute our content without permission</li>
+            <li>Reverse engineer or decompile our games</li>
+            <li>Use our trademarks without written consent</li>
+        </ul>
+        
+        <h2>6. Termination</h2>
+        <p>We may terminate or suspend your access to our services immediately, without prior notice, for any reason, including violation of these Terms.</p>
+        
+        <h2>7. Disclaimers</h2>
+        <p>Our services are provided "as is" without warranties of any kind. We do not guarantee that:</p>
+        <ul>
+            <li>Our services will be uninterrupted or error-free</li>
+            <li>Defects will be corrected</li>
+            <li>Our services are free of viruses or harmful components</li>
+        </ul>
+        
+        <h2>8. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, Nexus Gaming Hub shall not be liable for any indirect, incidental, special, or consequential damages resulting from:</p>
+        <ul>
+            <li>Your use or inability to use our services</li>
+            <li>Unauthorized access to your account</li>
+            <li>Any conduct of third parties on our services</li>
+        </ul>
+        
+        <h2>9. Changes to Terms</h2>
+        <p>We may update these Terms periodically. We will notify you of significant changes by posting the new Terms on this page and updating the "Last Updated" date.</p>
+        
+        <h2>10. Governing Law</h2>
+        <p>These Terms shall be governed by the laws of [Your Country/State] without regard to its conflict of law provisions.</p>
+        
+        <h2>11. Contact Us</h2>
+        <p>If you have questions about these Terms, please contact us at:</p>
+        <p>Email: legal@nexusgaminghub.com<br>
+        Address: 123 Gaming Street, Virtual City, VC 12345</p>
+        
+        <p class="last-updated">By using Nexus Gaming Hub, you acknowledge that you have read and agree to these Terms of Service.</p>
+    </div>
+</body>
+</html>

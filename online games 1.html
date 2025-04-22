@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Games | Nexus Gaming Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e44ff;
+            --secondary: #00f7ff;
+            --dark: #0a0a12;
+            --light: #f0f0ff;
+            --accent: #ff4d8d;
+            --neon-purple: #b400ff;
+            --neon-cyan: #00f7ff;
+            --card-bg: rgba(20, 20, 36, 0.85);
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.7;
+            background-image: 
+                linear-gradient(rgba(10, 10, 18, 0.9), rgba(10, 10, 18, 0.9)),
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        
+        /* Enhanced Navigation Bar */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(110, 68, 255, 0.3);
+        }
+        
+        .navbar a {
+            margin: 0 15px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+        
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            transition: var(--transition);
+        }
+        
+        .navbar a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+        
+        .navbar a:hover::before {
+            width: 80%;
+        }
+        
+        .navbar a.active {
+            background: linear-gradient(135deg, rgba(110, 68, 255, 0.2), rgba(0, 247, 255, 0.1));
+            color: var(--accent);
+        }
+        
+        .games-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: transparent;
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(180, 0, 255, 0.3);
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            border-radius: 4px;
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+        
+        .category-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            margin: 60px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(110, 68, 255, 0.3);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(110, 68, 255, 0.2);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(110, 68, 255, 0.1), rgba(0, 247, 255, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(110, 68, 255, 0.4);
+        }
+        
+        .game-card:hover::before {
+            opacity: 1;
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid rgba(110, 68, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .game-card:hover .game-image {
+            transform: scale(1.02);
+        }
+        
+        .game-content {
+            padding: 20px;
+        }
+        
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(110, 68, 255, 0.3);
+        }
+        
+        .play-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(110, 68, 255, 0.5);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .category-title {
+                font-size: 1.8rem;
+                margin: 50px 0 25px;
+            }
+            
+            .navbar a {
+                margin: 0 8px;
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar a {
+                padding: 8px 12px;
+                margin: 0 5px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/x1.html"><i class="fas fa-home"></i> Home</a>
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/shop3.html"><i class="fas fa-store"></i> Store</a>
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/online%20games%201.html" class="active"><i class="fas fa-gamepad"></i> Play Online</a>
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/one%20about%20us%20.html"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="file:///C:/Users/bezaw/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/project/one%20contact%20.html"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+
+    <div class="games-container">
+        <h1>Nexus Online Games</h1>
+        
+        <h2 class="category-title">Classic Games</h2>
+        <div class="games-grid" id="classic-games"></div>
+        
+        <h2 class="category-title">Puzzle & Strategy</h2>
+        <div class="games-grid" id="puzzle-games"></div>
+        
+        <h2 class="category-title">Action & Adventure</h2>
+        <div class="games-grid" id="action-games"></div>
+        
+        <h2 class="category-title">RACING GAMES</h2>
+        <div class="games-grid" id="mobile-games"></div>
+    </div>
+
+    <script>
+        const games = {
+            classic: [
+                { 
+                    name: 'Tic-Tac-Toe', 
+                    image: 'https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/591a911d9b73482c052270a8fe4cfc95.png', 
+                    link: 'https://playtictactoe.org/' 
+                },
+                { 
+                    name: 'Pac-Man', 
+                    image: 'https://rasterweb.net/raster/wp-content/uploads/2024/03/ghosts-02.jpg', 
+                    link: 'https://www.pacman.com/' 
+                },
+                { 
+                    name: 'Tetris', 
+                    image: 'https://static1.anpoimages.com/wordpress/wp-content/uploads/2019/06/tetris.jpg', 
+                    link: 'https://tetris.com/play-tetris' 
+                },
+                { 
+                    name: 'Pong', 
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo3YAp_YZxF0X9Axi4YU-DEudKH1LXrAySH972YQdAduTWfsJ28GXekDwDc9-WMQQZ-Sk&usqp=CAU', 
+                    link: 'https://www.ponggame.org/' 
+                }
+            ],
+            puzzle: [
+                { 
+                    name: 'Sudoku', 
+                    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg/1024px-Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg.png', 
+                    link: 'https://sudoku.com/' 
+                },
+                { 
+                    name: 'Chess', 
+                    image: 'https://playerzpot.com/blog/wp-content/uploads/2022/12/chess.png', 
+                    link: 'https://chess.com/' 
+                },
+                { 
+                    name: '2048', 
+                    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/1200px-2048_logo.svg.png', 
+                    link: 'https://play2048.co/' 
+                },
+                { 
+                    name: 'Minesweeper', 
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuS0Uz_VD67b-IWkC-w0e9kWgxdkHPs4wRLA&s', 
+                    link: 'https://minesweeper.online/' 
+                }
+            ],
+            action: [
+                { 
+                    name: 'Super Mario', 
+                    image: 'https://play-lh.googleusercontent.com/5LIMaa7WTNy34bzdFhBETa2MRj7mFJZWb8gCn_uyxQkUvFx_uOFCeQjcK16c6WpBA3E=w240-h480-rw', 
+                    link: 'https://supermario-game.com/' 
+                },
+                 { 
+                    name: 'Stick Merge', 
+                    image: 'https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/3b3f4aeacf600fd3910f1c3d513c0636.png', 
+                    link: 'https://poki.com/nl/g/stick-merge' 
+                },
+
+                { 
+                    name: 'Johnny Trigger - Action Shooter', 
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvFIrLA7EmZWH6Ebm163vk06nyZgbN8Gxyyg&s', 
+                    link: 'https://poki.com/nl/g/johnny-trigger-action-shooter' 
+                },
+                { 
+                    name: 'Subway Surfers', 
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRwD17L5hiTD7ZIzw29168gH_A_peqaw4bdA&s', 
+                    link: 'https://poki.com/nl/g/subway-surfers' 
+                },
+                { 
+                    name: 'Temple Run', 
+                    image: 'https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/49cd11d149a763c01cc6cc117fe57a00.png', 
+                    link: 'https://poki.com/nl/g/temple-run-2' 
+                }
+            ],
+            mobile: [
+                { 
+                    name: 'GP Moto Racing', 
+                    image: 'https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=1200,height=1200,fit=cover,f=png/36aa00069d6d06247ff5ecd81064e10c.jpg',
+                    link: 'https://poki.com/en/g/gp-moto-racing' 
+                },
+                { 
+                    name: 'MR RACER', 
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7g7zbar8P279rBTqgisn6ICjaWSbAjt67GA&s', 
+                    link: 'https://poki.com/nl/g/mr-racer-car-racing' 
+                },
+                { 
+                    name: 'Super Bike the Champion', 
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPr9G3DI-4tRIKzLyGTx7Htl9aoU0MfcODpA&s', 
+                    link: 'https://poki.com/nl/g/super-bike-the-champion' 
+                },
+                { 
+                    name: 'urban racer ', 
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXTQ3SP8R4jzxUfDR3pnCN3KJUn9C5NiwFQQ&s', 
+                    link: 'https://poki.com/nl/g/urban-racer' 
+                }
+            ]
+        };
+        
+        function loadGames() {
+            Object.keys(games).forEach(category => {
+                const container = document.getElementById(`${category}-games`);
+                games[category].forEach(game => {
+                    const gameCard = document.createElement('div');
+                    gameCard.classList.add('game-card');
+                    gameCard.innerHTML = `
+                        <img src="${game.image}" alt="${game.name}" class="game-image">
+                        <div class="game-content">
+                            <h3 class="game-title">${game.name}</h3>
+                            <button class="play-btn" onclick="window.open('${game.link}', '_blank')">
+                                <i class="fas fa-play"></i> Play Now
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(gameCard);
+                });
+            });
+        }
+        
+        loadGames();
+    </script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Nexus Gaming Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;700&display=swap');
+
+    :root {
+      --neon-blue: #0ff0fc;
+      --neon-pink: #ff2a6d;
+      --dark-bg: #0f1923;
+      --accent-purple: #9457eb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Rajdhani', sans-serif;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    .header {
+      padding: 2rem 0;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(15,25,35,0.8) 0%, rgba(15,25,35,0) 100%);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 15px rgba(15, 240, 252, 0.3);
+      letter-spacing: 3px;
+      margin-bottom: 0.5rem;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 15px rgba(15, 240, 252, 0.3); }
+      100% { text-shadow: 0 0 25px rgba(15, 240, 252, 0.6), 0 0 35px rgba(255, 42, 109, 0.4); }
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      padding: 2rem;
+    }
+
+    .login-container {
+      background: rgba(15, 25, 35, 0.9);
+      width: 100%;
+      max-width: 450px;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(15, 240, 252, 0.2),
+                  0 0 60px rgba(148, 87, 235, 0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+          to bottom right,
+          transparent 45%,
+          rgba(15, 240, 252, 0.1) 50%,
+          transparent 55%
+      );
+      transform: rotate(30deg);
+      animation: shine 5s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(30deg); }
+      100% { transform: translateX(100%) rotate(30deg); }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--neon-blue);
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .login-subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--neon-blue);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 10px rgba(15, 240, 252, 0.3);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .input-field::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(90deg, var(--neon-blue), var(--accent-purple));
+      border: none;
+      border-radius: 6px;
+      color: var(--dark-bg);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(15, 240, 252, 0.4);
+    }
+
+    .login-button:active {
+      transform: translateY(0);
+    }
+
+    .register-link {
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .register-link a {
+      color: var(--neon-pink);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .register-link a:hover {
+      color: #ff8fab;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2.5rem;
+      }
+
+      .login-container {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 2rem;
+      }
+
+      .tagline {
+        font-size: 1rem;
+      }
+
+      .login-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles-js"></div>
+
+  <header class="header">
+    <h1 class="logo">NEXUS GAMING HUB</h1>
+    <p class="tagline">LEVEL UP YOUR GAMING EXPERIENCE</p>
+  </header>
+
+  <main class="main-content">
+    <div class="login-container">
+      <div class="login-header">
+        <h2 class="login-title">PLAYER LOGIN</h2>
+        <p class="login-subtitle">Access your gaming universe</p>
+      </div>
+
+      <form onsubmit="redirectToHome(event)">
+        <div class="input-group">
+          <label for="email">GAMER ID / EMAIL</label>
+          <input type="email" id="email" class="input-field" placeholder="Enter your gamer ID or email" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">ACCESS CODE</label>
+          <input type="password" id="password" class="input-field" placeholder="Enter your secret code" required>
+        </div>
+
+        <button type="submit" class="login-button">CONNECT</button>
+
+        <p class="register-link">
+          Not registered yet? <a href="SIGN IN .HTML">Create your gaming profile</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    function redirectToHome(event) {
+      event.preventDefault();
+      window.location.href = "x1.html";
+    }
+  </script>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</body>
+</html>
+tml>
